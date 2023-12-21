@@ -1,0 +1,46 @@
+{
+  "1": {
+      "type": "Life",
+      "color": "Lavender"
+  },
+  "2": {
+      "type": "Work",
+      "color": "Sage"
+  },
+  "3": {
+      "type": "Learning",
+      "color": "Grape"
+  },
+  "4": {
+      "type": "Love/Family",
+      "color": "Flamingo"
+  },
+  "5": {
+      "type": "Creative",
+      "color": "Banana"
+  },
+  "6": {
+      "type": "Friends",
+      "color": "Tangerine"
+  },
+  "7": {
+      "type": "Projects (Group)",
+      "color": "Peacock"
+  },
+  "8": {
+      "type": "Exercise",
+      "color": "Graphite"
+  },
+  "9": {
+      "type": "Projects (Personal)",
+      "color": "Blueberry"
+  },
+  "10": {
+      "type": "Reflection",
+      "color": "Basil"
+  },
+  "11": {
+      "type": "Study",
+      "color": "Tomato"
+  }
+}

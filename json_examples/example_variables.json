@@ -1,0 +1,5 @@
+{
+    "calendars": ["email@gmail.com"],
+    "database_id": "notion_database_id_here",
+    "notion_secret": "notion_secret_here"
+}
