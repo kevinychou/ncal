@@ -45,6 +45,6 @@ python main.py
 ```
 
 ## Upcoming Features
-[] Implement CRON job to automate running this script at the end of every week
-[] Add options for more tracking via event name as opposed to just event colour
-[] Take "description" from Google Calendar events, and use this metadata to populate other databases (i.e. I also track my gym workouts using GCal).
+- [ ] Implement CRON job to automate running this script at the end of every week
+- [ ] Add options for more tracking via event name as opposed to just event colour
+- [ ] Take "description" from Google Calendar events, and use this metadata to populate other databases (i.e. I also track my gym workouts using GCal).
