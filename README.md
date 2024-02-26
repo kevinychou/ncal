@@ -45,6 +45,8 @@ python main.py
 ```
 
 ## Upcoming Features
-- [ ] Implement CRON job to automate running this script at the end of every week
+- [X] Implement CRON job to automate running this script at the end of every week
+  - cron.sh details how this is run each week. This is setup by using "crontab -e", with a script like "30 22 * * 7" (run every Sunday at 1030PM).
+  - Note: This was very frustating to setup on MacOS. Will write up how to do this in the future.
 - [ ] Add options for more tracking via event name as opposed to just event colour
 - [ ] Take "description" from Google Calendar events, and use this metadata to populate other databases (i.e. I also track my gym workouts using GCal).

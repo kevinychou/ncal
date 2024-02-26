@@ -65,6 +65,9 @@ def fetch_google_events(service):
             timeMin=start_date.isoformat() + 'Z',
             timeMax=end_date.isoformat() + 'Z'
         ).execute().get('items', [])
+        # out = open("test.json", "w")
+        # json.dump(events, out)
+        # out.close()
 
         for event in events:
             if event['status'] == "cancelled":
@@ -73,7 +76,7 @@ def fetch_google_events(service):
             start_time = event['start'].get('dateTime', event['start'].get('date'))
             end_time = event['end'].get('dateTime', event['end'].get('date'))
             summary = event.get('summary', 'No Title')
-            color_id = event.get('colorId', None)
+            color_id = event.get('colorId', "1")
             description = event.get('description', None)
 
             # Map color to item using the provided JSON file
