@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import os.path
 import json
+import logging, sys
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -11,6 +12,7 @@ from googleapiclient.errors import HttpError
 from notion_client import Client
 
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+logging.basicConfig(filename="debug.log", filemode='a')
 with open("variables.json") as f:
     variables = json.load(f)
     ACCEPTED_CALENDARS = variables["calendars"]
@@ -52,6 +54,7 @@ def fetch_google_events(service):
     # Define the start and end dates for the recent week
     end_date = datetime.utcnow()
     start_date = end_date - timedelta(days=7)
+    logging.info(end_date, start_date)
 
     # Fetch events from each calendar within the recent week
     all_events = []
@@ -63,7 +66,9 @@ def fetch_google_events(service):
         events = service.events().list(
             calendarId=calendar_id,
             timeMin=start_date.isoformat() + 'Z',
-            timeMax=end_date.isoformat() + 'Z'
+            timeMax=end_date.isoformat() + 'Z',
+            orderBy='startTime',
+            singleEvents = True
         ).execute().get('items', [])
         # out = open("test.json", "w")
         # json.dump(events, out)
@@ -101,7 +106,7 @@ def fetch_google_events(service):
                     'description': description 
                 }
                 all_events.append(event_details)
-
+    logging.info(all_events)
     return all_events
 
 # Authenticate with Notion API
@@ -144,7 +149,6 @@ def insert_into_notion(client, events, calendar_mapping):
     new_entry_dict.update(time_values)
 
     # Import properties into new row
-    print(new_entry_dict)
     client.pages.create(
         **{
             "parent": {"database_id": DATABASE_ID},
