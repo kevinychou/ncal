@@ -41,12 +41,13 @@ There are three input .json files you need in order to run the script. I've incl
 - variables.json: This is the list of calendars you want to find events from, the Notion database ID you want to pull from, and your created Notion secret from the Notion API.
 
 ```
-python main.py
+python main.py --start-date=XX-XX-XXXX --end-date==XX-XX-XXXX
 ```
 
 ## Upcoming Features
 - [X] Implement CRON job to automate running this script at the end of every week
   - cron.sh details how this is run each week. This is setup by using "crontab -e", with a script like "30 22 * * 7" (run every Sunday at 1030PM).
   - Note: This was very frustating to setup on MacOS. Will write up how to do this in the future.
+- [X] Added option to have custom flags to specify start and end date.
 - [ ] Add options for more tracking via event name as opposed to just event colour
 - [ ] Take "description" from Google Calendar events, and use this metadata to populate other databases (i.e. I also track my gym workouts using GCal).
