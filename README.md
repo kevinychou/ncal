@@ -41,7 +41,7 @@ There are three input .json files you need in order to run the script. I've incl
 - variables.json: This is the list of calendars you want to find events from, the Notion database ID you want to pull from, and your created Notion secret from the Notion API.
 
 ```
-python main.py --start-date=XX-XX-XXXX --end-date==XX-XX-XXXX
+python main.py --start-date=YYYY-MM-DD --end-date==YYYY-MM-DD 
 ```
 
 ## Upcoming Features

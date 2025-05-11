@@ -12,8 +12,14 @@ from googleapiclient.discovery import build
 from notion_client import Client
 
 SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"]
+VARIABLES_PATH = "/Users/kevinychou/Documents/repos/ncal/variables.json"
+CREDENTIALS_PATH = "/Users/kevinychou/Documents/repos/ncal/credentials.json"
+CALENDAR_PATH = "/Users/kevinychou/Documents/repos/ncal/calendar.json"
+
+# Set up logging
 logging.basicConfig(filename="debug.log", filemode="a")
-with open("variables.json") as f:
+
+with open(VARIABLES_PATH) as f:
     variables = json.load(f)
     ACCEPTED_CALENDARS = variables["calendars"]
     DATABASE_ID = variables["database_id"]
@@ -32,7 +38,7 @@ def authenticate_google():
         if credentials and credentials.expired and credentials.refresh_token:
             credentials.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_PATH, SCOPES)
             credentials = flow.run_local_server(port=0)
         with open(token_path, "w") as token:
             token.write(credentials.to_json())
@@ -42,7 +48,7 @@ def authenticate_google():
 
 # Fetch Google Calendar Events
 def fetch_google_events(service, start_date, end_date):
-    color_mapping_path = "calendar.json"
+    color_mapping_path = CALENDAR_PATH
 
     # Load color mapping from JSON file
     with open(color_mapping_path, "r") as json_file:
@@ -225,7 +231,7 @@ if __name__ == "__main__":
     events = fetch_google_events(google_service, start_date, end_date)
 
     # Insert events into Notion
-    with open("calendar.json") as f:
+    with open(CALENDAR_PATH) as f:
         calendar_mapping = json.load(f)
 
     insert_into_notion(notion_client, events, calendar_mapping)
